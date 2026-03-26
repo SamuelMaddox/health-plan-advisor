@@ -1,20 +1,24 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 
 // https://vite.dev/config/
-export default defineConfig({
-  plugins: [
-    react({
-      babel: {
-        plugins: [
-          [
-            'babel-plugin-react-compiler',
-            {
-              panicThreshold: 'none',
-            },
+export default defineConfig(({ command }) => {
+  const isDevelopment = command === "serve";
+
+  return {
+    plugins: [
+      react({
+        babel: {
+          plugins: [
+            [
+              "babel-plugin-react-compiler",
+              {
+                panicThreshold: isDevelopment ? "all_errors" : "none",
+              },
+            ],
           ],
-        ],
-      },
-    }),
-  ],
-})
+        },
+      }),
+    ],
+  };
+});
