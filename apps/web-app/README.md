@@ -1,75 +1,68 @@
-# React + TypeScript + Vite
+# Web App - Health Plan Advisor <!-- omit from toc -->
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- [About This App](#about-this-app)
+- [Getting Started](#getting-started)
+  - [Step 0 - Prerequisites](#step-0---prerequisites)
+  - [Step 1 - Install Dependencies](#step-1---install-dependencies)
+  - [Step 2 - Run Development Server](#step-2---run-development-server)
+- [Scripts](#scripts)
+- [React Compiler Notes](#react-compiler-notes)
+- [VS Code Extensions](#vs-code-extensions)
 
-Currently, two official plugins are available:
+## About This App
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This app is a Vite + React + TypeScript project using React Router Data mode and React Compiler.
 
-## React Compiler
+## Getting Started
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+### Step 0 - Prerequisites
 
-Note: This will impact Vite dev & build performances.
+- [Install git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+- [Install Node 24.0+](https://nodejs.org/en/download)
 
-## Expanding the ESLint configuration
+### Step 1 - Install Dependencies
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Run the following command:
 
-```js
-export default defineConfig([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+```terminal
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Step 2 - Run Development Server
 
-```js
-// eslint.config.js
-import reactX from "eslint-plugin-react-x";
-import reactDom from "eslint-plugin-react-dom";
-
-export default defineConfig([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs["recommended-typescript"],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+```terminal
+npm run dev
 ```
+
+## Scripts
+
+| Script            | Description                                                                  |
+| ----------------- | ---------------------------------------------------------------------------- |
+| `npm run dev`     | Starts the Vite development server for local development.                    |
+| `npm run build`   | Runs TypeScript project checks, then builds the production app with Vite.    |
+| `npm run lint`    | Runs ESLint against the project using the flat config in `eslint.config.js`. |
+| `npm run preview` | Serves the built `dist` output locally to preview the production build.      |
+
+## React Compiler Notes
+
+React Compiler is enabled in `vite.config.ts` through Babel plugin config.
+
+- In dev (`vite serve`): `panicThreshold` is `all_errors`
+- In build: `panicThreshold` is `none`
+
+This keeps compiler feedback strict during development while allowing production builds to proceed.
+
+## VS Code Extensions
+
+> [!NOTE]
+> Some of the extensions listed below have also been added to the workspace recommended extensions file: `.vscode/extensions.json`
+
+| Extension Name                                                                                                 | Description                                                                                                                                                                                                                                                                                             |
+| -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Git Graph](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph)                            | View a Git Graph of your repository, and easily perform Git actions from the graph.                                                                                                                                                                                                                     |
+| [GitHub Copilot Chat](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat)                 | An AI pair programmer tool that helps you write code faster and smarter.                                                                                                                                                                                                                                |
+| [GitHub Markdown Preview](https://marketplace.visualstudio.com/items?itemName=bierner.github-markdown-preview) | Changes VS Code's built-in markdown preview to match GitHub markdown rendering in style and content.                                                                                                                                                                                                    |
+| [markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)             | Linting for markdown files to encourage standards and consistency for Markdown files.                                                                                                                                                                                                                   |
+| [Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one)          | Adds a stronger Markdown authoring workflow in VS Code, including automatic table of contents generation and update support.                                                                                                                                                                            |
+| [open in browser](https://marketplace.visualstudio.com/items?itemName=techer.open-in-browser)                  | Useful to quickly open test coverage files in browser.                                                                                                                                                                                                                                                  |
+| [Better Comments](https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments)              | The Better Comments extension will help you create more human-friendly comments in your code. With this extension, you will be able to categorise your annotations into `Alerts`, `Queries`, `TODOs`, `Highlights`,`Commented out code can also be styled to make it clear the code shouldn't be there` |

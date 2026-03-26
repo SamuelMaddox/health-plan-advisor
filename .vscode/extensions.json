@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "mhutchie.git-graph",
+    "GitHub.copilot-chat",
+    "bierner.github-markdown-preview",
+    "DavidAnson.vscode-markdownlint",
+    "yzhang.markdown-all-in-one",
+    "techer.open-in-browser",
+    "aaron-bond.better-comments"
+  ]
+}
