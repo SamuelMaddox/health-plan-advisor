@@ -14,6 +14,10 @@
   - [Disable Node](#disable-node)
   - [Disable Linting Conventions](#disable-linting-conventions)
   - [Ignore root files or directories](#ignore-root-files-or-directories)
+- [Prettier](#prettier)
+  - [What is Prettier](#what-is-prettier)
+  - [Prettier Ignore Node](#prettier-ignore-node)
+  - [Prettier Disable Conventions](#prettier-disable-conventions)
 - [VS Code Extensions](#vs-code-extensions)
 
 ## About This App
@@ -43,12 +47,14 @@ npm run dev
 
 ## Scripts
 
-| Script            | Description                                                                  |
-| ----------------- | ---------------------------------------------------------------------------- |
-| `npm run dev`     | Starts the Vite development server for local development.                    |
-| `npm run build`   | Runs TypeScript project checks, then builds the production app with Vite.    |
-| `npm run lint`    | Runs ESLint against the project using the flat config in `eslint.config.js`. |
-| `npm run preview` | Serves the built `dist` output locally to preview the production build.      |
+| Script                   | Description                                                                                                                           |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------- |
+| `npm run dev`            | Starts the Vite development server for local development.                                                                             |
+| `npm run build`          | Runs TypeScript project checks, then builds the production app with Vite.                                                             |
+| `npm run preview`        | Serves the built `dist` output locally to preview the production build.                                                               |
+| `npm run lint`           | Runs ESLint against the project using the flat config in `eslint.config.js`.                                                          |
+| `npm run prettier`       | Format files to conform to the Prettier Style Guide                                                                                   |
+| `npm run prettier:check` | Check if files conforms to the Prettier Style Guide without making changes. Exits with an error status if files require re-formatting |
 
 ## React Compiler Notes
 
@@ -123,6 +129,35 @@ console.log("hello");
 
 See ESLint documentation on [Ignoring Files and Directories](https://eslint.org/docs/latest/use/configure/ignore)
 
+## Prettier
+
+### What is Prettier
+
+Prettier is used to format our code to conform to a consistent style.
+
+### Prettier Ignore Node
+
+In some cases prettier will reformat code that we don't want reformated. We can use `// prettier-ignore` to exclude the next node from formatting. For example:
+
+```js
+// prettier-ignore
+matrix(
+  1, 0, 0,
+  0, 1, 0,
+  0, 0, 1
+)
+```
+
+will be transformed to a single line, making it harder to read, without the ignore comment:
+
+```js
+matrix(1, 0, 0, 0, 1, 0, 0, 0, 1);
+```
+
+### Prettier Disable Conventions
+
+When disabling a line or block of code please provide an extra comment before the disable statement explaining why the rule is disabled
+
 ## VS Code Extensions
 
 > [!NOTE]
@@ -138,3 +173,4 @@ See ESLint documentation on [Ignoring Files and Directories](https://eslint.org/
 | [open in browser](https://marketplace.visualstudio.com/items?itemName=techer.open-in-browser)                  | Useful to quickly open test coverage files in browser.                                                                                                                                                                                                                                                  |
 | [Better Comments](https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments)              | The Better Comments extension will help you create more human-friendly comments in your code. With this extension, you will be able to categorise your annotations into `Alerts`, `Queries`, `TODOs`, `Highlights`,`Commented out code can also be styled to make it clear the code shouldn't be there` |
 | [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)                           | Provides immediate linting when writing code                                                                                                                                                                                                                                                            |
+| [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)                         | Used to automatically format code files to a consistent style                                                                                                                                                                                                                                           |

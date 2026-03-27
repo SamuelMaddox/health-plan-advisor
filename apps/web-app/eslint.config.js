@@ -1,14 +1,14 @@
-import js from "@eslint/js";
 import eslintReact from "@eslint-react/eslint-plugin";
-import globals from "globals";
+import js from "@eslint/js";
 import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
-import tseslint from "typescript-eslint";
 import { defineConfig, globalIgnores } from "eslint/config";
+import globals from "globals";
+import tseslint from "typescript-eslint";
 // import css from "@eslint/css"; // 🟡 TODO: Does this work yet for TailwindCSS v4.0?
+import comments from "@eslint-community/eslint-plugin-eslint-comments/configs";
 import json from "@eslint/json";
 import markdown from "@eslint/markdown";
-import comments from "@eslint-community/eslint-plugin-eslint-comments/configs";
 
 export default defineConfig([
   globalIgnores(["dist"]),
