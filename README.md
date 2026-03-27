@@ -18,6 +18,12 @@
   - [What is Prettier](#what-is-prettier)
   - [Prettier Ignore Node](#prettier-ignore-node)
   - [Prettier Disable Conventions](#prettier-disable-conventions)
+- [Pre-Commit Hooks](#pre-commit-hooks)
+  - [About Pre-Commit Hooks](#about-pre-commit-hooks)
+  - [About Husky](#about-husky)
+  - [About Lint-Staged](#about-lint-staged)
+  - [Configure Git Hooks](#configure-git-hooks)
+  - [Bypassing Pre-Commit Hooks](#bypassing-pre-commit-hooks)
 - [VS Code Extensions](#vs-code-extensions)
 
 ## About This App
@@ -49,14 +55,15 @@ npm run dev
 
 ## Scripts
 
-| Script                   | Description                                                                                                                           |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------- |
-| `npm run dev`            | Starts the Vite development server for local development.                                                                             |
-| `npm run build`          | Runs TypeScript project checks, then builds the production app with Vite.                                                             |
-| `npm run preview`        | Serves the built `dist` output locally to preview the production build.                                                               |
-| `npm run lint`           | Runs ESLint against the project using the flat config in `eslint.config.js`.                                                          |
-| `npm run prettier`       | Format files to conform to the Prettier Style Guide                                                                                   |
-| `npm run prettier:check` | Check if files conforms to the Prettier Style Guide without making changes. Exits with an error status if files require re-formatting |
+| Script                   | Description                                                                                                                               |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `npm run dev`            | Starts the Vite development server for local development.                                                                                 |
+| `npm run build`          | Runs TypeScript project checks, then builds the production app with Vite.                                                                 |
+| `npm run preview`        | Serves the built `dist` output locally to preview the production build.                                                                   |
+| `npm run lint`           | Runs ESLint against the project using the flat config in `eslint.config.js`.                                                              |
+| `npm run prettier`       | Format files to conform to the Prettier Style Guide                                                                                       |
+| `npm run prettier:check` | Check if files conforms to the Prettier Style Guide without making changes. Exits with an error status if files require re-formatting     |
+| `pnpm run prepare`       | This script runs automatically after you install dependencies. It triggers Husky’s installation process, which sets up Git hooks locally. |
 
 ## React Compiler Notes
 
@@ -159,6 +166,44 @@ matrix(1, 0, 0, 0, 1, 0, 0, 0, 1);
 ### Prettier Disable Conventions
 
 When disabling a line or block of code please provide an extra comment before the disable statement explaining why the rule is disabled
+
+## Pre-Commit Hooks
+
+> [!warning]
+> Committing can seem to take a while if using the Git GUI in VS Code. This is because pre-commit hooks are running in the background before the commit is executed. If you're committing in the terminal you'll see the pre-commit hooks running.
+
+### About Pre-Commit Hooks
+
+A **pre-commit** hook is a script that runs automatically before a commit is finalized in Git. It’s used to catch issues early (like lint errors or formatting problems) by running checks or commands before code is committed. If the script fails, the commit is blocked.
+
+### About Husky
+
+> [!note]
+> [Official Husky Installation Instructions](https://typicode.github.io/husky/get-started.html)
+
+**Husky** is a tool that makes it easy to manage Git hooks (like pre-commit) in JavaScript projects. It lets you define scripts that run at various points in the Git workflow (e.g., before commits, before pushes) by placing executable files in the `.husky` directory.
+
+The `"prepare": "husky"` script in your `package.json` ensures Husky is set up after every install; which in turns ensures git hooks are configured for you locally on your machine.
+
+### About Lint-Staged
+
+> [!note]
+> [Official Lint-Staged Installation README.md](https://github.com/lint-staged/lint-staged)
+
+**lint-staged** is a tool that runs scripts only on files that are staged for commit. This makes pre-commit checks fast and efficient, since only changed files are checked, not the whole codebase. Most useful for auto formatting staged files. Husky can run a prettier script, but will NOT re-stage files that have been formatted before committing.
+
+### Configure Git Hooks
+
+- The `.husky/pre-commit` file contains the scripts to run before commit, including `lint-staged`.
+- The `lint-staged.config.js` file describes what scripts to run for what glob patterns.
+
+### Bypassing Pre-Commit Hooks
+
+you can bypass `pre-commit` hooks using the `--no-verify` option. Example:
+
+```shell
+`git commit -m "yolo" --no-verify`
+```
 
 ## VS Code Extensions
 
