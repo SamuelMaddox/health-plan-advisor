@@ -6,6 +6,7 @@
     "DavidAnson.vscode-markdownlint",
     "yzhang.markdown-all-in-one",
     "techer.open-in-browser",
-    "aaron-bond.better-comments"
+    "aaron-bond.better-comments",
+    "dbaeumer.vscode-eslint"
   ]
 }
