@@ -8,9 +8,16 @@ import { defineConfig, globalIgnores } from "eslint/config";
 // import css from "@eslint/css"; // 🟡 TODO: Does this work yet for TailwindCSS v4.0?
 import json from "@eslint/json";
 import markdown from "@eslint/markdown";
+import comments from "@eslint-community/eslint-plugin-eslint-comments/configs";
 
 export default defineConfig([
   globalIgnores(["dist"]),
+  comments.recommended,
+  {
+    rules: {
+      "@eslint-community/eslint-comments/require-description": "error",
+    },
+  },
   {
     files: ["**/*.{ts,tsx}"],
     extends: [
