@@ -4,9 +4,17 @@
 - [Getting Started](#getting-started)
   - [Step 0 - Prerequisites](#step-0---prerequisites)
   - [Step 1 - Install Dependencies](#step-1---install-dependencies)
+  - [VS Code Settings](#vs-code-settings)
   - [Step 2 - Run Development Server](#step-2---run-development-server)
 - [Scripts](#scripts)
 - [React Compiler Notes](#react-compiler-notes)
+- [UI Components](#ui-components)
+  - [`shadcn`](#shadcn)
+  - [`class-variance-authority` (CVA)](#class-variance-authority-cva)
+  - [`clsx`](#clsx)
+  - [`tailwind-merge`](#tailwind-merge)
+  - [`lucide-react`](#lucide-react)
+  - [`tw-animate-css`](#tw-animate-css)
 - [ESLint](#eslint)
   - [What is ESLint](#what-is-eslint)
   - [No Enums Custom Rule](#no-enums-custom-rule)
@@ -47,6 +55,17 @@ Run the following command:
 npm install
 ```
 
+### VS Code Settings
+
+If using VS Code with the Tailwind CSS IntelliSense extension, add this to your settings.json:
+
+```json
+{
+  ...
+  "tailwindCSS.classFunctions": ["clsx"],
+}
+```
+
 ### Step 2 - Run Development Server
 
 ```terminal
@@ -73,6 +92,109 @@ React Compiler is enabled in `vite.config.ts` through Babel plugin config.
 - In build: `panicThreshold` is `none`
 
 This keeps compiler feedback strict during development while allowing production builds to proceed.
+
+## UI Components
+
+Our UI is built using Tailwind CSS and shadcn/ui. Rather than using a traditional component library, shadcn provides a CLI to generate accessible, prebuilt components directly into our codebase, which we then own and customize.
+
+Below is a breakdown of the key packages and their roles.
+
+### `shadcn`
+
+A CLI tool used to generate UI components directly into the codebase.
+
+- Not a runtime dependency
+- Provides prebuilt, accessible component templates
+- Components are copied into the project and fully owned by us
+
+Example:
+
+```bash
+npx shadcn add button
+```
+
+### `class-variance-authority` (CVA)
+
+Instead of manually concatenating Tailwind classes, CVA allows us to define variants declaratively and reuse them across components.
+
+Example problem it solves:
+
+```tsx
+<button className="rounded bg-blue-500 px-4 py-2 text-white" />
+```
+
+Now imagine variants:
+
+- size: sm / md / lg
+- variant: primary / secondary / ghost
+
+CVA lets you define this cleanly:
+
+```tsx
+const buttonVariants = cva("rounded px-4 py-2", {
+  variants: {
+    variant: {
+      primary: "bg-blue-500 text-white",
+      secondary: "bg-gray-200",
+    },
+    size: {
+      sm: "text-sm",
+      lg: "text-lg",
+    },
+  },
+});
+```
+
+### `clsx`
+
+Utility for conditionally joining class names.
+
+```tsx
+clsx("base-class", isActive && "active");
+```
+
+Instead of:
+
+```tsx
+"base-class " + (isActive ? "active" : "");
+```
+
+### `tailwind-merge`
+
+Resolves conflicting Tailwind classes when multiple class sources are combined.
+
+Problem:
+
+```tsx
+"px-2 px-4"; // which wins?
+```
+
+Solution:
+
+```tsx
+twMerge("px-2 px-4"); // → "px-4"
+```
+
+This is especially important when combining:
+
+- base styles
+- variant styles
+- user overrides
+
+### `lucide-react`
+
+Icon library used throughout the UI.
+
+- Used by many shadcn components (e.g., buttons with icons, alerts, dropdowns)
+- Lightweight and tree-shakeable
+
+### `tw-animate-css`
+
+Provides predefined animation utilities for Tailwind. Used for common UI interactions such as:
+
+- dialogs
+- dropdowns
+- accordions
 
 ## ESLint
 
@@ -221,3 +343,4 @@ you can bypass `pre-commit` hooks using the `--no-verify` option. Example:
 | [Better Comments](https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments)              | The Better Comments extension will help you create more human-friendly comments in your code. With this extension, you will be able to categorise your annotations into `Alerts`, `Queries`, `TODOs`, `Highlights`,`Commented out code can also be styled to make it clear the code shouldn't be there` |
 | [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)                           | Provides immediate linting when writing code                                                                                                                                                                                                                                                            |
 | [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)                         | Used to automatically format code files to a consistent style                                                                                                                                                                                                                                           |
+| [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)     | Adds Tailwind CSS autocomplete, linting, and hover previews for utility classes used throughout the app.                                                                                                                                                                                                |

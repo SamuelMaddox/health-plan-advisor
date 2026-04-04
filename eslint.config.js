@@ -1,14 +1,15 @@
+import comments from "@eslint-community/eslint-plugin-eslint-comments/configs";
 import eslintReact from "@eslint-react/eslint-plugin";
 import js from "@eslint/js";
+import json from "@eslint/json";
+import markdown from "@eslint/markdown";
 import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
 import { defineConfig, globalIgnores } from "eslint/config";
 import globals from "globals";
 import tseslint from "typescript-eslint";
 // import css from "@eslint/css"; // 🟡 TODO: Does this work yet for TailwindCSS v4.0?
-import comments from "@eslint-community/eslint-plugin-eslint-comments/configs";
-import json from "@eslint/json";
-import markdown from "@eslint/markdown";
+// import tailwind from "eslint-plugin-tailwindcss"; // 🟡 TODO: Does this work yet for TailwindCSS v4.0
 
 export default defineConfig([
   globalIgnores(["dist"]),
@@ -28,6 +29,9 @@ export default defineConfig([
       eslintReact.configs["disable-conflict-eslint-plugin-react"],
       reactHooks.configs.flat.recommended,
       reactRefresh.configs.vite,
+      // 🟡 TODO: What about the unofficial but very popular eslint-plugin-tailwindcss plugin? as of
+      // 4/1/2026 it does not yet support TailwindCSS v4.0
+      // tailwind.configs["flat/recommended"], // 🟡 TODO: Does this work yet for TailwindCSS v4.0?
     ],
     languageOptions: {
       parserOptions: {
