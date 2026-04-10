@@ -1,0 +1,104 @@
+@import "./raw-ds-color-palette.css";
+
+/* ========================================= */
+/* === RAW DESIGN SYSTEM (DS) DARK THEME === */
+/* ========================================= */
+/* 🛑 STOP:
+  Do not use variables from this file directly in application code. These
+  variables are intended to be consumed as part of tailwind's theme
+  configuration.
+*/
+
+/* ------------------- */
+/* --- DARK THEME --- */
+/* ------------------- */
+[data-theme="dark"] {
+  /* ------------- */
+  /* STATUS TOKENS */
+  /* ------------- */
+  --ds-info: var(--ds-color-accent-400);
+  --ds-info-foreground: var(--ds-color-slate-50);
+  --ds-info-surface: var(--ds-color-accent-900);
+  --ds-info-border: var(--ds-color-accent-700);
+
+  --ds-success: var(--ds-color-emerald-400);
+  --ds-success-foreground: var(--ds-color-slate-50);
+  --ds-success-surface: var(--ds-color-emerald-900);
+  --ds-success-border: var(--ds-color-emerald-700);
+
+  --ds-warning: var(--ds-color-amber-400);
+  --ds-warning-foreground: var(--ds-color-slate-50);
+  --ds-warning-surface: var(--ds-color-amber-950);
+  --ds-warning-border: var(--ds-color-amber-700);
+
+  --ds-danger: var(--ds-color-red-400);
+  --ds-danger-foreground: var(--ds-color-slate-50);
+  --ds-danger-surface: var(--ds-color-red-900);
+  --ds-danger-border: var(--ds-color-red-700);
+
+  /* ------------- */
+  /* SHADCN TOKENS */
+  /* ------------- */
+  --ds-background: var(--ds-color-slate-950);
+  --ds-foreground: var(--ds-color-slate-50);
+
+  --ds-card: var(--ds-color-slate-900);
+  --ds-card-foreground: var(--ds-color-slate-50);
+
+  --ds-popover: var(--ds-color-slate-900);
+  --ds-popover-foreground: var(--ds-color-slate-50);
+
+  --ds-primary: var(--ds-color-brand-400);
+  --ds-primary-foreground: var(--ds-color-slate-950);
+
+  --ds-secondary: var(--ds-color-emerald-800);
+  --ds-secondary-foreground: var(--ds-color-slate-50);
+
+  --ds-muted: var(--ds-color-slate-800);
+  --ds-muted-foreground: var(--ds-color-slate-300);
+
+  --ds-accent: var(--ds-color-accent-800);
+  --ds-accent-foreground: var(--ds-color-slate-50);
+
+  --ds-destructive: var(--ds-danger);
+
+  --ds-border: var(--ds-color-slate-800);
+  --ds-input: var(--ds-color-slate-700);
+  --ds-ring: var(--ds-color-brand-400);
+
+  --ds-chart-1: var(--ds-color-brand-400);
+  --ds-chart-2: var(--ds-color-brand-300);
+  --ds-chart-3: var(--ds-color-emerald-400);
+  --ds-chart-4: var(--ds-color-emerald-300);
+  --ds-chart-5: var(--ds-color-accent-400);
+  --ds-chart-6: var(--ds-color-accent-300);
+  --ds-chart-7: var(--ds-color-amber-400);
+  --ds-chart-8: var(--ds-color-amber-300);
+  --ds-chart-9: var(--ds-color-red-400);
+  --ds-chart-10: var(--ds-color-red-300);
+  --ds-chart-11: var(--ds-color-orange-400);
+  --ds-chart-12: var(--ds-color-orange-300);
+  --ds-chart-13: var(--ds-color-teal-400);
+  --ds-chart-14: var(--ds-color-teal-300);
+  --ds-chart-15: var(--ds-color-slate-400);
+  --ds-chart-16: var(--ds-color-slate-300);
+
+  --ds-sidebar: var(--ds-color-slate-900);
+  --ds-sidebar-foreground: var(--ds-color-slate-50);
+  --ds-sidebar-primary: var(--ds-color-brand-400);
+  --ds-sidebar-primary-foreground: var(--ds-color-slate-950);
+  --ds-sidebar-accent: var(--ds-color-slate-800);
+  --ds-sidebar-accent-foreground: var(--ds-color-slate-50);
+  --ds-sidebar-border: var(--ds-color-slate-800);
+  --ds-sidebar-ring: var(--ds-color-brand-400);
+
+  /* ------------ */
+  /* STATE TOKENS */
+  /* ------------ */
+  --ds-disabled: var(--ds-color-slate-800);
+  --ds-disabled-foreground: var(--ds-color-slate-500);
+  --ds-disabled-border: var(--ds-color-slate-800);
+
+  --ds-border-muted: var(--ds-color-slate-900);
+  --ds-border-strong: var(--ds-color-slate-600);
+}

@@ -10,7 +10,7 @@
     "lint": "eslint .",
     "prettier": "prettier --write ./",
     "prettier:check": "prettier --check ./",
-    "prepare": "husky"
+    "prepare": "husky && npx skills experimental_install"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
