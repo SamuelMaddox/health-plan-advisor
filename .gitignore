@@ -13,8 +13,8 @@ dist-ssr
 *.local
 
 # Agent skills (restored via prepare script)
-.agents/skills/
-.claude/skills/
+.agents
+.claude
 
 # Editor directories and files
 .vscode/*

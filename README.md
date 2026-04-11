@@ -8,6 +8,7 @@
   - [Step 2 - Run Development Server](#step-2---run-development-server)
 - [Scripts](#scripts)
 - [React Compiler Notes](#react-compiler-notes)
+- [AI Agent Skills](#ai-agent-skills)
 - [UI Components](#ui-components)
   - [`shadcn`](#shadcn)
   - [`class-variance-authority` (CVA)](#class-variance-authority-cva)
@@ -15,6 +16,10 @@
   - [`tailwind-merge`](#tailwind-merge)
   - [`lucide-react`](#lucide-react)
   - [`tw-animate-css`](#tw-animate-css)
+- [Theme](#theme)
+- [Theme Configuration](#theme-configuration)
+  - [Using Color Utilities](#using-color-utilities)
+  - [Using Theme Variables](#using-theme-variables)
 - [ESLint](#eslint)
   - [What is ESLint](#what-is-eslint)
   - [No Enums Custom Rule](#no-enums-custom-rule)
@@ -57,7 +62,7 @@ npm install
 
 ### VS Code Settings
 
-If using VS Code with the Tailwind CSS IntelliSense extension, add this to your settings.json:
+If you're using VS Code with the Tailwind CSS IntelliSense extension, add this to your settings.json:
 
 ```json
 {
@@ -93,7 +98,27 @@ React Compiler is enabled in `vite.config.ts` through Babel plugin config.
 
 This keeps compiler feedback strict during development while allowing production builds to proceed.
 
+## AI Agent Skills
+
+TODO: more details here, update prepare script above to includes skills install, what is the experimental_install about.
+
+[Agent skills](https://www.npmjs.com/package/skills) are reusable instruction sets that extend your coding agent's capabilities. They're defined in SKILL.md files with YAML frontmatter containing a name and description.
+
+Skills let agents perform specialized tasks like:
+
+- Generating release notes from git history
+- Creating PRs following your team's conventions
+- Integrating with external tools (Linear, Notion, etc.)
+
+Discover skills at [skills.sh](https://skills.sh/)
+
 ## UI Components
+
+TODO: should provide link to the documentation for each of these tools
+
+TODO: add this comment somewhere here. in fact, this should maybe be it's own sub category like shadcn and other tools are --- [Tailwind CSS](https://tailwindcss.com/), a utility-first CSS framework packed with classes like flex, pt-4, text-center and rotate-90 that can be composed to build any design directly in your markup.
+
+TODO: Probably something about components being built on base ui?
 
 Our UI is built using Tailwind CSS and shadcn/ui. Rather than using a traditional component library, shadcn provides a CLI to generate accessible, prebuilt components directly into our codebase, which we then own and customize.
 
@@ -120,7 +145,7 @@ Instead of manually concatenating Tailwind classes, CVA allows us to define vari
 Example problem it solves:
 
 ```tsx
-<button className="rounded bg-blue-500 px-4 py-2 text-white" />
+<button className="bg-blue-500 rounded px-4 py-2 text-white" />
 ```
 
 Now imagine variants:
@@ -195,6 +220,79 @@ Provides predefined animation utilities for Tailwind. Used for common UI interac
 - dialogs
 - dropdowns
 - accordions
+
+## Theme
+
+Theming in this project is implemented using [Tailwind CSS](https://tailwindcss.com/), (TODO: with a few custom theme variables defined within the tailwind system that shadcn relies on).
+
+TODO: maybe add something about shadcn having custom theme variables it uses, but they are an extension of tailwind theme variables, and that extension is done by following tailwinds adding custom styles documentaiton (linked in the tip below)
+
+## Theme Configuration
+
+> [!tip]
+>
+> Useful Documentation:
+>
+> - [Tailwind: Preflight](https://tailwindcss.com/docs/preflight) - Documents the baseline CSS reset Tailwind injects to normalize browser default styles.
+> - [Tailwind: Theme](https://tailwindcss.com/docs/theme) - Explains how to configure and extend Tailwind's design tokens via the `@theme` block.
+> - [Tailwind: Adding Custom Styles](https://tailwindcss.com/docs/adding-custom-styles) - Covers the different ways to add one-off styles outside of the standard utility class system.
+
+TODO: Read this guide to understand how we configured the project's light and dark themes.
+
+TODO: How does shadcn fit into this? that guide should maybe include that, as well as the this readme.
+
+TODO: What we need to call out here is that the semantic theme variables will automatically swap values for light and dark mode, so instead of `class="bg-white dark:bg-black"` you can use `class="bg-background"` instead. the raw design system is defined in `src/styles/raw-design-system.css` (verify path is correct) and should NOT be used within the main app. this is where the color palette, light theme, and dark theme are defined here. all variables within this should NOT be used and are prepended with `ds-` for Design System (EX: `--ds-background`). Then `src/index.css` imports the `raw-design-system.css` and adds the design system variables to the tailwind theme using the Tailwind's custom `@theme inline` directive
+
+### Using Color Utilities
+
+> [!note]
+> Source: [Using Color Utilities](https://tailwindcss.com/docs/colors#using-color-utilities)
+
+Use color utilities like `bg-white`, `border-pink-300`, and `text-gray-950` to set the different color properties of elements in your design:
+
+| Utility         | Description                                                                                                   |
+| --------------- | ------------------------------------------------------------------------------------------------------------- |
+| bg-\*           | Sets the [background color](https://tailwindcss.com/docs/background-color) of an element                      |
+| text-\*         | Sets the [text color](https://tailwindcss.com/docs/text-color) of an element                                  |
+| decoration-\*   | Sets the [text decoration color](https://tailwindcss.com/docs/text-decoration-color) of an element            |
+| border-\*       | Sets the [border color](https://tailwindcss.com/docs/border-color) of an element                              |
+| outline-\*      | Sets the [outline color](https://tailwindcss.com/docs/outline-color) of an element                            |
+| shadow-\*       | Sets the color of [box shadows](https://tailwindcss.com/docs/box-shadow#setting-the-shadow-color)             |
+| inset-shadow-\* | Sets the color of [inset box shadows](https://tailwindcss.com/docs/box-shadow#setting-the-inset-shadow-color) |
+| ring-\*         | Sets the color of [ring shadows](https://tailwindcss.com/docs/box-shadow#setting-the-ring-color)              |
+| inset-ring-\*   | Sets the color of [inset ring shadows](https://tailwindcss.com/docs/box-shadow#setting-the-inset-ring-color)  |
+| accent-\*       | Sets the [accent color](https://tailwindcss.com/docs/accent-color) of form controls                           |
+| caret-\*        | Sets the [caret color](https://tailwindcss.com/docs/caret-color) in form controls                             |
+| fill-\*         | Sets the [fill color](https://tailwindcss.com/docs/fill) of SVG elements                                      |
+| stroke-\*       | Sets the [stroke color](https://tailwindcss.com/docs/stroke) of SVG elements                                  |
+
+### Using Theme Variables
+
+> [!note]
+> Source: [Theme Variable Namespaces](https://tailwindcss.com/docs/theme#theme-variable-namespaces)
+
+Theme variables are defined in namespaces and each namespace corresponds to one or more utility class or variant APIs.
+
+| Namespace         | Utility classes                                                       |
+| ----------------- | --------------------------------------------------------------------- |
+| --color-\*        | Color utilities like bg-red-500, text-sky-300, and many more          |
+| --font-\*         | Font family utilities like font-sans                                  |
+| --text-\*         | Font size utilities like text-xl                                      |
+| --font-weight-\*  | Font weight utilities like font-bold                                  |
+| --tracking-\*     | Letter spacing utilities like tracking-wide                           |
+| --leading-\*      | Line height utilities like leading-tight                              |
+| --breakpoint-\*   | Responsive breakpoint variants like sm:\*                             |
+| --container-\*    | Container query variants like @sm:\* and size utilities like max-w-md |
+| --spacing-\*      | Spacing and sizing utilities like px-4, max-h-16, and many more       |
+| --radius-\*       | Border radius utilities like rounded-sm                               |
+| --shadow-\*       | Box shadow utilities like shadow-md                                   |
+| --inset-shadow-\* | Inset box shadow utilities like inset-shadow-xs                       |
+| --drop-shadow-\*  | Drop shadow filter utilities like drop-shadow-md                      |
+| --blur-\*         | Blur filter utilities like blur-md                                    |
+| --perspective-\*  | Perspective utilities like perspective-near                           |
+| --aspect-\*       | Aspect ratio utilities like aspect-video                              |
+| --ease-\*         | Transition timing function utilities like ease-out                    |
+| --animate-\*      | Animation utilities like animate-spin                                 |
 
 ## ESLint
 

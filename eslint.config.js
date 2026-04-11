@@ -8,11 +8,12 @@ import reactRefresh from "eslint-plugin-react-refresh";
 import { defineConfig, globalIgnores } from "eslint/config";
 import globals from "globals";
 import tseslint from "typescript-eslint";
+import { eslintTargets } from "./lint-targets.js";
 // import css from "@eslint/css"; // 🟡 TODO: Does this work yet for TailwindCSS v4.0?
 // import tailwind from "eslint-plugin-tailwindcss"; // 🟡 TODO: Does this work yet for TailwindCSS v4.0
 
 export default defineConfig([
-  globalIgnores(["dist"]),
+  globalIgnores(["dist", ".agents/**"]),
   comments.recommended,
   {
     rules: {
@@ -20,7 +21,7 @@ export default defineConfig([
     },
   },
   {
-    files: ["**/*.{ts,tsx}"],
+    files: [eslintTargets.typescript],
     extends: [
       js.configs.recommended,
       tseslint.configs.strictTypeChecked,
@@ -70,13 +71,13 @@ export default defineConfig([
   //   extends: [css.configs.recommended],
   // },
   {
-    files: ["**/*.json"],
+    files: [eslintTargets.json],
     ignores: ["package-lock.json"],
     language: "json/json",
     extends: [json.configs.recommended],
   },
   {
-    files: ["**/*.md"],
+    files: [eslintTargets.markdown],
     extends: [markdown.configs.recommended],
     language: "markdown/gfm", // 🟡 Optional, include this property if using Github-flavored markdown
     rules: {

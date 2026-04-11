@@ -46,6 +46,9 @@ https://tailwindcss.com/docs/colors#referencing-other-variables
   /* Disable the default color palette provided by Tailwind */
   --color-*: initial;
 
+  --color-black: #000;
+  --color-white: #fff;
+
   /* --------------------- */
   /* --- STATUS TOKENS --- */
   /* --------------------- */
@@ -300,5 +303,10 @@ https://tailwindcss.com/docs/colors#referencing-other-variables
 
   body {
     @apply bg-background text-foreground;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
   }
 }

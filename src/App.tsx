@@ -1,12 +1,9 @@
-import { clsx } from "clsx"; // Add this line
-import "./App.css";
-
 function App() {
-  return (
-    <h1 className={clsx("text-3xl font-bold text-blue-950 underline")}>
-      Hello, world!
-    </h1>
-  );
+  return <h1>Hello, world!</h1>;
+
+  // TODO: loader / action or clientLoader / clientAction for API calls. Need example
+  // TODO: Examples of tying state to form fields
+  // TODO: vitest & testing library
 }
 
 export default App;
