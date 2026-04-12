@@ -9,6 +9,7 @@
 - [Scripts](#scripts)
 - [React Compiler Notes](#react-compiler-notes)
 - [AI Agent Skills](#ai-agent-skills)
+- [Testing](#testing)
 - [UI Components](#ui-components)
   - [`shadcn`](#shadcn)
   - [`class-variance-authority` (CVA)](#class-variance-authority-cva)
@@ -44,6 +45,8 @@
 This app is a Vite + React + TypeScript project using React Router Data mode and React Compiler.
 
 Health Plan Advisor is a web application that helps people compare health insurance options by calculating the true total cost of each plan, not just the monthly premium. It combines premiums, deductibles, copays, coinsurance, out-of-pocket maximums, and estimated medical usage to show side-by-side annual cost projections for different scenarios. The app also includes an AI chat assistant that answers plan-specific questions in plain language, explains tradeoffs, and helps users choose the plan that best fits their health needs and budget.
+
+TODO: there are some notes from old emails in obsidian I need to go through. File named Health Plan Advisor
 
 ## Getting Started
 
@@ -111,6 +114,12 @@ Skills let agents perform specialized tasks like:
 - Integrating with external tools (Linear, Notion, etc.)
 
 Discover skills at [skills.sh](https://skills.sh/)
+
+## Testing
+
+TODO: Update scripts table above. Check package.json and see if tests scripts are the same as what i have from previous projects
+
+TODO: Fill out this section. probably have old notes to reference. definitely have many articles to reference. subsection about testing library. another subsection about test organization
 
 ## UI Components
 
