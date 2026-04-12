@@ -118,7 +118,7 @@ TODO: should provide link to the documentation for each of these tools
 
 TODO: add this comment somewhere here. in fact, this should maybe be it's own sub category like shadcn and other tools are --- [Tailwind CSS](https://tailwindcss.com/), a utility-first CSS framework packed with classes like flex, pt-4, text-center and rotate-90 that can be composed to build any design directly in your markup.
 
-TODO: Probably something about components being built on base ui?
+TODO: Probably something about components being built on base ui (include link). when refering to shadcn documentation be sure to select Base UI?
 
 Our UI is built using Tailwind CSS and shadcn/ui. Rather than using a traditional component library, shadcn provides a CLI to generate accessible, prebuilt components directly into our codebase, which we then own and customize.
 
@@ -226,6 +226,24 @@ Provides predefined animation utilities for Tailwind. Used for common UI interac
 Theming in this project is implemented using [Tailwind CSS](https://tailwindcss.com/), (TODO: with a few custom theme variables defined within the tailwind system that shadcn relies on).
 
 TODO: maybe add something about shadcn having custom theme variables it uses, but they are an extension of tailwind theme variables, and that extension is done by following tailwinds adding custom styles documentaiton (linked in the tip below)
+
+TODO: This comment from the useResolvedTheme hook should be duplicated here, perhaps in it's own section about the ThemeManager inline script in index.html
+
+```ts
+// ============================
+// === HOW THEME IS MANAGED ===
+// ============================
+//  1. The inline `window.ThemeManager` script in `index.html` is the runtime
+//    source of truth for applying theme before React mounts, which avoids
+//    FOUC (Flash Of Unstyled Content) and keeps the root `data-theme` attribute
+//    in sync.
+//  2. This hook mirrors that external state into React so components can
+//    re-render when the resolved theme changes.
+//  3. `src/styles/globals.css` ties this to Tailwind with
+//    `@custom-variant dark`, mapping dark-mode utilities to the
+//    `[data-theme=dark]` data attribute.
+//    https://tailwindcss.com/docs/dark-mode#using-a-data-attribute
+```
 
 ## Theme Configuration
 

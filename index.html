@@ -4,7 +4,54 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TODO: web-app</title>
+    <title>Health Plan Advisor</title>
+    <script>
+      // 🟡 FOUC (Flash Of Unstyled Content) can happen when the user has dark
+      // mode enabled by their system, or set in local storage. To avoid FOUC,
+      // this script needs to be defined inline in the <head> element.
+      window.ThemeManager = {
+        changeTheme(theme) {
+          switch (theme) {
+            case "dark":
+              localStorage.theme = "dark";
+              document.documentElement.setAttribute("data-theme", "dark");
+              break;
+            case "light":
+              localStorage.theme = "light";
+              document.documentElement.removeAttribute("data-theme");
+              break;
+            default:
+              localStorage.removeItem("theme");
+              if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                document.documentElement.setAttribute("data-theme", "dark");
+              } else {
+                document.documentElement.removeAttribute("data-theme");
+              }
+          }
+        },
+
+        handleSystemThemeChange() {
+          if (!localStorage.theme) {
+            window.ThemeManager.changeTheme("system");
+          }
+        },
+
+        getTheme() {
+          return (
+            localStorage.theme ||
+            (window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light")
+          );
+        },
+      };
+      window
+        .matchMedia("(prefers-color-scheme: dark)")
+        .addEventListener("change", () => {
+          window.ThemeManager.handleSystemThemeChange();
+        });
+      window.ThemeManager.changeTheme(localStorage.theme);
+    </script>
   </head>
   <body>
     <div id="root"></div>
