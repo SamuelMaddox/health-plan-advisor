@@ -22,13 +22,21 @@ export function useResolvedTheme() {
   );
 
   useEffect(() => {
+    // Subscribe to system theme changes so that if the user has the "system"
+    // theme selected, the app will update properly when the user's system
+    // theme changes.
     const handleSystemThemeChange = () => {
       setResolvedTheme(window.ThemeManager.getTheme());
     };
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    mediaQuery.addEventListener("change", handleSystemThemeChange);
+    window.addEventListener(
+      "SYSTEM_THEME_CHANGE_EVENT",
+      handleSystemThemeChange,
+    );
     return () => {
-      mediaQuery.removeEventListener("change", handleSystemThemeChange);
+      window.removeEventListener(
+        "SYSTEM_THEME_CHANGE_EVENT",
+        handleSystemThemeChange,
+      );
     };
   }, []);
 

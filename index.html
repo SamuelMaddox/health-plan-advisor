@@ -33,6 +33,7 @@
         handleSystemThemeChange() {
           if (!localStorage.theme) {
             window.ThemeManager.changeTheme("system");
+            window.dispatchEvent(new Event("SYSTEM_THEME_CHANGE_EVENT"));
           }
         },
 
