@@ -1,9 +1,9 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
-@import "./raw-ds-color-palette.css";
-@import "./raw-ds-light-theme.css";
-@import "./raw-ds-dark-theme.css";
+@import "./rawDSColorPalette.css";
+@import "./rawDSLightTheme.css";
+@import "./rawDSDarkTheme.css";
 
 :root {
   --radius: 0.625rem;

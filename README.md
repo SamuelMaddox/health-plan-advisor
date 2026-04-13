@@ -82,15 +82,18 @@ npm run dev
 
 ## Scripts
 
-| Script                   | Description                                                                                                                               |
-| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| `npm run dev`            | Starts the Vite development server for local development.                                                                                 |
-| `npm run build`          | Runs TypeScript project checks, then builds the production app with Vite.                                                                 |
-| `npm run preview`        | Serves the built `dist` output locally to preview the production build.                                                                   |
-| `npm run lint`           | Runs ESLint against the project using the flat config in `eslint.config.js`.                                                              |
-| `npm run prettier`       | Format files to conform to the Prettier Style Guide                                                                                       |
-| `npm run prettier:check` | Check if files conforms to the Prettier Style Guide without making changes. Exits with an error status if files require re-formatting     |
-| `pnpm run prepare`       | This script runs automatically after you install dependencies. It triggers Husky’s installation process, which sets up Git hooks locally. |
+| Script                    | Description                                                                                                                               |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `npm run dev`             | Starts the Vite development server for local development.                                                                                 |
+| `npm run build`           | Runs TypeScript project checks, then builds the production app with Vite.                                                                 |
+| `npm run preview`         | Serves the built `dist` output locally to preview the production build.                                                                   |
+| `npm run test`            | Runs tests in watch mode with verbose output and coverage                                                                                 |
+| `npm run test:nocoverage` | Runs tests in watch mode without coverage (faster for development)                                                                        |
+| `npm run test:nowatch`    | Runs tests once with coverage (useful for CI)                                                                                             |
+| `npm run lint`            | Runs ESLint against the project using the flat config in `eslint.config.js`.                                                              |
+| `npm run prettier`        | Format files to conform to the Prettier Style Guide                                                                                       |
+| `npm run prettier:check`  | Check if files conforms to the Prettier Style Guide without making changes. Exits with an error status if files require re-formatting     |
+| `pnpm run prepare`        | This script runs automatically after you install dependencies. It triggers Husky’s installation process, which sets up Git hooks locally. |
 
 ## React Compiler Notes
 
@@ -117,7 +120,7 @@ Discover skills at [skills.sh](https://skills.sh/)
 
 ## Testing
 
-TODO: Update scripts table above. Check package.json and see if tests scripts are the same as what i have from previous projects
+TODO: Update scripts table above. Check package.json and see if tests scripts are the same as what i have from previous projects (I did, they are now)
 
 TODO: Fill out this section. probably have old notes to reference. definitely have many articles to reference. subsection about testing library. another subsection about test organization
 
@@ -322,6 +325,30 @@ Theme variables are defined in namespaces and each namespace corresponds to one 
 | --animate-\*      | Animation utilities like animate-spin                                 |
 
 ## ESLint
+
+TODO: look more into this:
+
+1. Enforce via ESLint (The "Stick")
+   You can programmatically block deep imports into your feature or component folders. The [no-restricted-imports](https://eslint.org/docs/latest/rules/no-restricted-imports) rule in ESLint allows you to prevent developers from importing anything from sub-folders while allowing the root index file.
+
+   ```json
+   // .eslintrc.json
+   "rules": {
+     "no-restricted-imports": ["error", {
+       "patterns": [{
+         "group": ["@/features/*/*", "!@/features/*/index"],
+         "message": "Please import from the feature's index file instead of direct sub-folders."
+       }]
+     }]
+   }
+   ```
+
+How it works: The pattern `features/*/*` blocks deep paths like `features/auth/hooks/useAuth`, while the `!` negation allows `features/auth` (which resolves to `index.ts`).
+
+1. Configure IDE Auto-Imports (The "Carrot")
+   Developers often import directly because their IDE (VS Code) suggests it first. You can influence this behavior:
+   - TypeScript Setting: In your `tsconfig.json`, ensure `moduleResolution` is set to `node` or `bundler`.
+   - VS Code User Settings: Encourage the team to set `"typescript.preferences.importModuleSpecifier": "non-relative"`. This pushes the IDE to prefer your defined path aliases (like `@/components`) which naturally resolve through index files first.
 
 ### What is ESLint
 
