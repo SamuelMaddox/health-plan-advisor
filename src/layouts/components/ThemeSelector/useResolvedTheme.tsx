@@ -1,3 +1,4 @@
+import type { AppThemeOption } from "@/types/appTheme";
 import { useEffect, useState } from "react";
 
 // ============================
@@ -13,8 +14,6 @@ import { useEffect, useState } from "react";
 //    `@custom-variant dark`, mapping dark-mode utilities to the
 //    `[data-theme=dark]` data attribute.
 //    https://tailwindcss.com/docs/dark-mode#using-a-data-attribute
-
-type ThemeOption = "dark" | "light" | "system";
 
 export function useResolvedTheme() {
   const [resolvedTheme, setResolvedTheme] = useState(() =>
@@ -40,7 +39,7 @@ export function useResolvedTheme() {
     };
   }, []);
 
-  const changeTheme = (theme: ThemeOption) => {
+  const changeTheme = (theme: AppThemeOption) => {
     window.ThemeManager.changeTheme(theme);
     setResolvedTheme(window.ThemeManager.getTheme());
   };

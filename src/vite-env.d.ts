@@ -1,11 +1,9 @@
 /// <reference types="vite/client" />
 
-// The ThemeManager that is defined in an inline script in index.html.
-interface ThemeManager {
-  changeTheme(theme: "dark" | "light" | "system"): void;
-  getTheme(): "dark" | "light";
-}
+import type { AppThemeManager } from "./types/appTheme";
 
-interface Window {
-  ThemeManager: ThemeManager;
+declare global {
+  interface Window {
+    ThemeManager: AppThemeManager;
+  }
 }

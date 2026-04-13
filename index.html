@@ -10,6 +10,10 @@
       // mode enabled by their system, or set in local storage. To avoid FOUC,
       // this script needs to be defined inline in the <head> element.
       window.ThemeManager = {
+        // TODO: Any way to test ThemeManager? Perhaps extract it out into a
+        // separate file and have the build process add it to the <head> element
+        // (including development server). Then it could be imported and tested
+        // in isolation.
         changeTheme(theme) {
           switch (theme) {
             case "dark":

@@ -82,15 +82,18 @@ npm run dev
 
 ## Scripts
 
-| Script                   | Description                                                                                                                               |
-| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| `npm run dev`            | Starts the Vite development server for local development.                                                                                 |
-| `npm run build`          | Runs TypeScript project checks, then builds the production app with Vite.                                                                 |
-| `npm run preview`        | Serves the built `dist` output locally to preview the production build.                                                                   |
-| `npm run lint`           | Runs ESLint against the project using the flat config in `eslint.config.js`.                                                              |
-| `npm run prettier`       | Format files to conform to the Prettier Style Guide                                                                                       |
-| `npm run prettier:check` | Check if files conforms to the Prettier Style Guide without making changes. Exits with an error status if files require re-formatting     |
-| `pnpm run prepare`       | This script runs automatically after you install dependencies. It triggers Husky’s installation process, which sets up Git hooks locally. |
+| Script                    | Description                                                                                                                               |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `npm run dev`             | Starts the Vite development server for local development.                                                                                 |
+| `npm run build`           | Runs TypeScript project checks, then builds the production app with Vite.                                                                 |
+| `npm run preview`         | Serves the built `dist` output locally to preview the production build.                                                                   |
+| `npm run test`            | Runs tests in watch mode with verbose output and coverage                                                                                 |
+| `npm run test:nocoverage` | Runs tests in watch mode without coverage (faster for development)                                                                        |
+| `npm run test:nowatch`    | Runs tests once with coverage (useful for CI)                                                                                             |
+| `npm run lint`            | Runs ESLint against the project using the flat config in `eslint.config.js`.                                                              |
+| `npm run prettier`        | Format files to conform to the Prettier Style Guide                                                                                       |
+| `npm run prettier:check`  | Check if files conforms to the Prettier Style Guide without making changes. Exits with an error status if files require re-formatting     |
+| `pnpm run prepare`        | This script runs automatically after you install dependencies. It triggers Husky’s installation process, which sets up Git hooks locally. |
 
 ## React Compiler Notes
 
@@ -117,7 +120,7 @@ Discover skills at [skills.sh](https://skills.sh/)
 
 ## Testing
 
-TODO: Update scripts table above. Check package.json and see if tests scripts are the same as what i have from previous projects
+TODO: Update scripts table above. Check package.json and see if tests scripts are the same as what i have from previous projects (I did, they are now)
 
 TODO: Fill out this section. probably have old notes to reference. definitely have many articles to reference. subsection about testing library. another subsection about test organization
 
