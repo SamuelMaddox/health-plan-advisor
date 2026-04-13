@@ -326,6 +326,30 @@ Theme variables are defined in namespaces and each namespace corresponds to one 
 
 ## ESLint
 
+TODO: look more into this:
+
+1. Enforce via ESLint (The "Stick")
+   You can programmatically block deep imports into your feature or component folders. The [no-restricted-imports](https://eslint.org/docs/latest/rules/no-restricted-imports) rule in ESLint allows you to prevent developers from importing anything from sub-folders while allowing the root index file.
+
+   ```json
+   // .eslintrc.json
+   "rules": {
+     "no-restricted-imports": ["error", {
+       "patterns": [{
+         "group": ["@/features/*/*", "!@/features/*/index"],
+         "message": "Please import from the feature's index file instead of direct sub-folders."
+       }]
+     }]
+   }
+   ```
+
+How it works: The pattern `features/*/*` blocks deep paths like `features/auth/hooks/useAuth`, while the `!` negation allows `features/auth` (which resolves to `index.ts`).
+
+1. Configure IDE Auto-Imports (The "Carrot")
+   Developers often import directly because their IDE (VS Code) suggests it first. You can influence this behavior:
+   - TypeScript Setting: In your `tsconfig.json`, ensure `moduleResolution` is set to `node` or `bundler`.
+   - VS Code User Settings: Encourage the team to set `"typescript.preferences.importModuleSpecifier": "non-relative"`. This pushes the IDE to prefer your defined path aliases (like `@/components`) which naturally resolve through index files first.
+
 ### What is ESLint
 
 [ESLint](https://eslint.org/) is a tool for identifying and reporting on patterns found in ECMAScript/JavaScript code, with the goal of making code more consistent and avoiding bugs.

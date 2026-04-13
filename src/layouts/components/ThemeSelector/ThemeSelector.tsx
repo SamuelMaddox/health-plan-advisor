@@ -7,7 +7,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/DropdownMenu";
 import { MonitorIcon, MoonIcon, SunIcon } from "lucide-react";
-import { useResolvedTheme } from "./useResolvedTheme";
+import { useResolvedTheme } from "./hooks/useResolvedTheme";
 
 export function ThemeSelector() {
   const { resolvedTheme, changeTheme } = useResolvedTheme();

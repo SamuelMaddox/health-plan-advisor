@@ -13,7 +13,7 @@ import { eslintTargets } from "./lint-targets.js";
 // import tailwind from "eslint-plugin-tailwindcss"; // 🟡 TODO: Does this work yet for TailwindCSS v4.0
 
 export default defineConfig([
-  globalIgnores(["dist", ".agents/**"]),
+  globalIgnores(["dist", ".agents/**", "coverage/**"]),
   comments.recommended,
   {
     rules: {
